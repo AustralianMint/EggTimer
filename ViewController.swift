@@ -11,7 +11,9 @@ import UIKit
 class ViewController: UIViewController {
         
     //boiling times in Dictionary form
-    let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
+    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    
+    var secondsRemaining = 60
     
     //Egg-Buttons Link
     @IBAction func hardnessSelected(_ sender: UIButton) {
@@ -19,22 +21,19 @@ class ViewController: UIViewController {
         //use as key value for calling cooking times
         let hardness = sender.currentTitle!
         
-        //Printing fitting value to key from dictionary
-        print(eggTimes[hardness]!)
-        
+        //update to corresponding cooking times in Dict
+        secondsRemaining = eggTimes[hardness]!
+                
         //Timer class being called (or created?) when button pressed
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     }
     
-    
-    var counter = 60
-    
     //Function w/ infinite loop, being called every second.
-    //specified in Timer.scheduledTimer(...)s
+    //specified in Timer.scheduledTimer(...)
     @objc func updateCounter() {
-        if counter >= 0 {
-            print("\(counter) seconds")
-            counter -= 1
+        if secondsRemaining >= 0 {
+            print("\(secondsRemaining) seconds")
+            secondsRemaining -= 1
         }
     }
     
