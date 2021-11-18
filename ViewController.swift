@@ -27,14 +27,14 @@ class ViewController: UIViewController {
     }
     
     
-    var counter = 1
+    var counter = 60
     
     //Function w/ infinite loop, being called every second.
     //specified in Timer.scheduledTimer(...)s
     @objc func updateCounter() {
-        if counter > 0 {
+        if counter >= 0 {
             print("\(counter) seconds")
-            counter += 1
+            counter -= 1
         }
     }
     
